@@ -46,6 +46,10 @@ in
   ];
   systemd.tmpfiles.rules = [ "d /var/shared 0777 root root - -" ];
   services.openssh.settings.PermitRootLogin = "yes";
+  users.users.root.openssh.authorizedKeys.keys = [
+    "SCHOOL KEY" 
+    "OTHER KEY"
+  ];
   system.activationScripts.root-password = ''
     mkdir -p /var/shared
     ${pkgs.xkcdpass}/bin/xkcdpass --numwords 3 --delimiter - --count 1 > /var/shared/root-password
